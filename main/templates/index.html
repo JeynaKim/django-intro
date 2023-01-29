@@ -1,37 +1,75 @@
-{% extends 'base.html' %}
-{% block content %}
-<div class='container mt-5'>
-  <form method='POST'>
-    <div class='text-center'>
-      <h1>SingleKey</h1>
-    </div>
-    <div class='row mt-3'>
-      <div class='col'>
-        <label>Name</label><br>
-        <input name='name'>
+{% extends 'base.html' %} {% block content %}
+<div>
+  <div class="text-center">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <img class="singlekey_logo" src="../static/assets/singlekey_logo.png" />
+        <button
+          type="button"
+          class="btn btn-outline-primary btn-login"
+          href="#"
+        >
+          Login
+        </button>
       </div>
-      <div class='col'>
-        <label>Email</label><br>
-        <input name='email'>
-      </div>
-    </div>
-    <br>
-    <br>
-    {% csrf_token %}
-    <div class='text-center'>
-      <button type='supmit' class='btn btn-primary'>Submit</button>
-    </div>
-  </form>
-  {% if results %}
-  <div class='w-100 text-center mt-5'>
-    <h3>Previous submissions</h3>
-      {% for i in results %}
-        <div class='text-left mb-3 p-4 card'>
-          <b>{{ i.name }}</b><br>
-          <b>{{ i.email }}</b>
-        </div>
-      {% endfor %}
-    {% endif %}
+    </nav>
   </div>
+  <div class="row">
+    <div class="main-container col-8">
+      <form method="POST">
+        <div class="col mt-3">
+          <div class="col">
+            <h3 class="txt-submit-info">Submit Information</h3>
+            <label class="txt-login">Applicant name</label><br />
+            <input
+              class="input-cotainer"
+              name="name"
+              placeholder="Applicant name"
+            />
+          </div>
+          <div class="col">
+            <label class="txt-login">Email address </label><br />
+            <input
+              class="input-cotainer"
+              name="email"
+              placeholder="Email address"
+            />
+          </div>
+        </div>
+        <br />
+        <br />
+        {% csrf_token %}
+        <div class="">
+          <button type="submit" class="btn btn-secondary">Submit</button>
+        </div>
+      </form>
+      {% if results %}
+      <div class="w-100 mt-5">
+        <h3>Submissions</h3>
+        <div class="border-bottom">
+          <div class="row">
+            <div class="icon-spacer"></div>
+            <div class="col">Applicant</div>
+            <div class="col">Email</div>
+            <div class="col">Status</div>
+          </div>
+        </div>
+        {% for i in results %}
+        <div class="border-bottom">
+          <div class="row">
+            <img class="user-icon1" src="../static/assets/user_icon.png" />
+            <div class="col"><b>{{ i.name }}</b><br /></div>
+
+            <div class="col"><b>{{ i.email }}</b></div>
+
+            <div class="col"><b>Submitted</b></div>
+          </div>
+        </div>
+        {% endfor %} {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="col-4">hello2</div>
+  <div class="container container-sm">hello</div>
+  {% endblock %}
 </div>
-{% endblock %}
