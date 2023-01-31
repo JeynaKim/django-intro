@@ -1,34 +1,46 @@
-{% extends 'base.html' %} {% block content %}
-<div>
-  <div class="text-center">
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container-fluid">
-        <img class="singlekey_logo" src="../static/assets/singlekey_logo.png" />
+{% extends 'base.html' %} {% block content %} /* ----- Mobile View ----- */
+<div class="d-md-none">
+  <div class="body-container">
+    <div class="text-center">
+      <nav class="navbar navbar-light">
+        <img
+          class="singlekey_logo-mobile"
+          src="../static/assets/singlekey_logo.png"
+        />
         <button
           type="button"
-          class="btn btn-outline-primary btn-login"
+          class="btn btn-outline-primary btn-login-mobile"
           href="#"
         >
           Login
         </button>
+      </nav>
+    </div>
+
+    <div class="gradiant-container-mobile">
+      <h3 class="username-txt">Hello Jeyna</h3>
+      <div class="summary-txt">
+        Here is a quick summary of your activity so far. If you have any
+        questions about your report, feel free to book a call with us.
       </div>
-    </nav>
-  </div>
-  <div class="row">
-    <div class="main-container col-8">
+      <button type="button" class="btn btn-outline-light">Book a call</button>
+    </div>
+
+    <div class="main-left-container-mobile">
       <form method="POST">
-        <div class="col mt-3">
-          <div class="col">
-            <h3 class="txt-submit-info">Submit Information</h3>
-            <label class="txt-login">Applicant name</label><br />
+        <div>
+          <div>
+            <h3 class="txt-bold">Submit information</h3>
+            <label class="txt-bold">Applicant name</label><br />
             <input
               class="input-cotainer"
               name="name"
               placeholder="Applicant name"
             />
           </div>
-          <div class="col">
-            <label class="txt-login">Email address </label><br />
+          <br />
+          <div>
+            <label class="txt-bold">Email address </label><br />
             <input
               class="input-cotainer"
               name="email"
@@ -37,37 +49,154 @@
           </div>
         </div>
         <br />
-        <br />
         {% csrf_token %}
-        <div class="">
+        <div>
           <button type="submit" class="btn btn-secondary">Submit</button>
         </div>
       </form>
       {% if results %}
-      <div class="w-100 mt-5">
-        <h3>Submissions</h3>
-        <div class="border-bottom">
-          <div class="row">
-            <div class="icon-spacer"></div>
-            <div class="col">Applicant</div>
-            <div class="col">Email</div>
-            <div class="col">Status</div>
+      <span class="border-top mt-5" />
+      <div class="mt-4">
+        <h3 class="txt-bold">Submissions</h3>
+        <div class="w-100 submission-container-mobile">
+          {% for i in results %}
+          <div class="container-spacer-mobile">
+            <div class="user-info-spacer-mobile">
+              <div class="user-info-spacer">
+                <img
+                  class="profile-icon-mobile"
+                  src="../static/assets/profile_icon.png"
+                />
+                <div class="user-info-container-mobile">
+                  <div class="col user-info txt-bold"><b>{{ i.name }}</b></div>
+                  <div class="col user-info"><b>{{ i.email }}</b></div>
+                </div>
+              </div>
+
+              <div class="badge badge-success submit-badge">Submitted</div>
+            </div>
           </div>
+
+          {% endfor %} {% endif %}
         </div>
-        {% for i in results %}
-        <div class="border-bottom">
-          <div class="row">
-            <img class="profile-icon" src="../static/assets/profile_icon.png" />
-            <div class="col"><b>{{ i.name }}</b><br /></div>
-            <div class="col"><b>{{ i.email }}</b></div>
-            <div class="col"><b>Submitted</b></div>
-          </div>
-        </div>
-        {% endfor %} {% endif %}
       </div>
     </div>
+
+    <div class="regular-container-mobile">
+      <h3 class="txt-bold">Rent Guarantee</h3>
+      <div class="">
+        Never miss a rent payment! Learn how our Rent Guarantee Program protects
+        your property and rental income so you can take the risk out of renting.
+      </div>
+      <button type="button" class="btn btn-outline-secondary">Start now</button>
+    </div>
+
+    <footer class="singlekey-footer-mobile">
+      © All rights reserved SingleKey 2021
+    </footer>
   </div>
-  <div class="col-4">hello2</div>
-  <div class="container container-sm">hello</div>
-  {% endblock %}
 </div>
+/* ----- Desktop View ----- */
+<div class="d-none d-md-block">
+  <div class="body-container">
+    <div class="text-center">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+          <img
+            class="singlekey_logo"
+            src="../static/assets/singlekey_logo.png"
+          />
+          <button type="button" class="mr-5 btn btn-outline-primary" href="#">
+            Login
+          </button>
+        </div>
+      </nav>
+    </div>
+    <div class="row main-whole-container">
+      <div class="main-left-container col-8">
+        <form method="POST">
+          <div>
+            <div>
+              <h3 class="txt-bold">Submit Information</h3>
+              <label class="txt-bold">Applicant name</label><br />
+              <input
+                class="input-cotainer"
+                name="name"
+                placeholder="Applicant name"
+              />
+            </div>
+            <br />
+            <div>
+              <label class="txt-bold">Email address </label><br />
+              <input
+                class="input-cotainer"
+                name="email"
+                placeholder="Email address"
+              />
+            </div>
+          </div>
+          <br />
+          {% csrf_token %}
+          <div>
+            <button type="submit" class="btn btn-secondary">Submit</button>
+          </div>
+        </form>
+        {% if results %}
+        <span class="border-top mt-5" />
+        <div class="mt-4">
+          <h3 class="txt-bold">Submissions</h3>
+          <div class="w-100 submission-container">
+            <div class="border-bottom">
+              <div class="row no-gutters p-2">
+                <div class="profile-icon"></div>
+                <div class="col txt-bold">Applicant</div>
+                <div class="col txt-bold">Email</div>
+                <div class="col txt-bold">Status</div>
+              </div>
+            </div>
+            {% for i in results %}
+            <div class="border-bottom">
+              <div class="row no-gutters container-spacer">
+                <img
+                  class="profile-icon"
+                  src="../static/assets/profile_icon.png"
+                />
+                <div class="col user-info txt-bold"><b>{{ i.name }}</b></div>
+                <div class="col user-info"><b>{{ i.email }}</b></div>
+                <div class="col user-info"><b>Submitted</b></div>
+              </div>
+            </div>
+            {% endfor %} {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-4 mt-5">
+        <div class="gradiant-container">
+          <h3 class="username-txt">Hello Jeyna</h3>
+          <div class="summary-txt">
+            Here is a quick summary of your activity so far. If you have any
+            questions about your report, feel free to book a call with us.
+          </div>
+          <button type="button" class="btn btn-outline-light">
+            Book a call
+          </button>
+        </div>
+        <div class="regular-container">
+          <h3 class="txt-bold">Rent Guarantee</h3>
+          <div class="">
+            Never miss a rent payment! Learn how our Rent Guarantee Program
+            protects your property and rental income so you can take the risk
+            out of renting.
+          </div>
+          <button type="button" class="btn btn-outline-secondary">
+            Start now
+          </button>
+        </div>
+      </div>
+    </div>
+    <footer class="singlekey-footer">
+      © All rights reserved SingleKey 2021
+    </footer>
+  </div>
+</div>
+{% endblock %}
