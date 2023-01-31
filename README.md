@@ -1,5 +1,16 @@
 This is a basic Django project designed as an introduction to Django and to test familiarity with HTML, CSS and Bootstrap  
   
+  
+## Final Product
+
+_Desktop Version_
+
+![django-intro-desktop](https://user-images.githubusercontent.com/100962211/215630918-61216afd-2e00-4c7a-a72f-00a1bc3a597f.png)
+
+_Mobile Version_
+
+![django-intro-mobile](https://user-images.githubusercontent.com/100962211/215631013-5606523c-d10d-40fc-9f48-8b6340b197c7.png)
+
 Instructions:  
   
 ## 1. Clone Repository in to your local environment  
